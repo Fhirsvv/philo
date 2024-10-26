@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:42:02 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/26 19:16:40 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/26 19:28:25 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	eat(t_philos *ph)
 	if (*ph->max_meals == ph->current_meals)
 	{
 		set_dead_flag(1, ph);
-		dead_write(ph);
 		pthread_mutex_unlock(ph->right_fork);
 		pthread_mutex_unlock(ph->left_fork);
 		return (1);
