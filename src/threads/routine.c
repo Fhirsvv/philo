@@ -6,12 +6,11 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:42:02 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/28 09:31:30 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:38:54 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
-//TODO: hacer lo de max meals, que todos deban comer al menos max_meals para que se acabe
 
 static void	phwrite(char *str, size_t time, t_philos *ph)
 {
@@ -31,7 +30,7 @@ static int	eat(t_philos *ph)
 	pthread_mutex_lock(ph->meals_lock);
 	time = get_current_time() - ph->start_time;
 	phwrite("%zu %d is eating\n", time, ph);
-	ph->time_lmeal = time;//get_current_time() - ph->start_time;
+	ph->time_lmeal = time;
 	++ph->current_meals;
 	if (*ph->max_meals == ph->current_meals)
 		++*ph->how_many_finished;
@@ -49,7 +48,7 @@ static int	think(t_philos *ph)
 	size_t	time;
 
 	if (is_dead_flag(ph))
-		return (1);	
+		return (1);
 	time = get_current_time() - ph->start_time;
 	phwrite("%zu %d is thinking\n", time, ph);
 	if (time - ph->time_lmeal > *ph->time_die)
@@ -71,11 +70,11 @@ static int	phsleep(t_philos *ph)
 	phwrite("%zu %d is sleeping\n", time, ph);
 	ft_usleep(*ph->time_sleep);
 	time = get_current_time() - ph->start_time;
-	if  (time - ph->time_lmeal > *ph->time_die)
+	if (time - ph->time_lmeal > *ph->time_die)
 	{
 		set_dead_flag(1, ph);
 		dead_write(ph);
-		return (1);	
+		return (1);
 	}
 	return (0);
 }
@@ -88,7 +87,7 @@ void	*routine(void *philo)
 	while (true)
 	{
 		if (!eat(ph) && !phsleep(ph) && !think(ph))
-			continue;
+			continue ;
 		return (NULL);
 	}
 	return (NULL);

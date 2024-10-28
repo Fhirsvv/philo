@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:43:42 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/28 09:16:44 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:37:08 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	pr_init(t_program *pr, char **argv)
 		pr->max_meals = ft_atoi(argv[5]);
 	pr->philos = (t_philos *)safe_malloc(sizeof(t_philos) * pr->nb_philos);
 	pr->forks = (pthread_mutex_t *)safe_malloc(sizeof(pthread_mutex_t)
-		* pr->nb_philos);
+			* pr->nb_philos);
 }
 
 void	init(t_program *pr, char **argv)

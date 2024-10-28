@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:10:43 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/28 09:15:58 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:36:56 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_philos
 	size_t			current_meals;
 	size_t			start_time;
 	size_t			time_lmeal;
-	
+
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
 
