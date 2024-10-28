@@ -6,11 +6,12 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:42:02 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/26 19:28:25 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:31:30 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
+//TODO: hacer lo de max meals, que todos deban comer al menos max_meals para que se acabe
 
 static void	phwrite(char *str, size_t time, t_philos *ph)
 {
@@ -27,19 +28,15 @@ static int	eat(t_philos *ph)
 		return (1);
 	pthread_mutex_lock(ph->right_fork);
 	pthread_mutex_lock(ph->left_fork);
-	time = get_current_time() - ph->start_time;
-	if (*ph->max_meals == ph->current_meals)
-	{
-		set_dead_flag(1, ph);
-		pthread_mutex_unlock(ph->right_fork);
-		pthread_mutex_unlock(ph->left_fork);
-		return (1);
-	}
-	else
-		phwrite("%zu %d is eating\n", time, ph);
 	pthread_mutex_lock(ph->meals_lock);
+	time = get_current_time() - ph->start_time;
+	phwrite("%zu %d is eating\n", time, ph);
+	ph->time_lmeal = time;//get_current_time() - ph->start_time;
 	++ph->current_meals;
-	ph->time_lmeal = get_current_time() - ph->start_time;
+	if (*ph->max_meals == ph->current_meals)
+		++*ph->how_many_finished;
+	if (*ph->how_many_finished == *ph->nb_philos)
+		set_dead_flag(1, ph);
 	pthread_mutex_unlock(ph->meals_lock);
 	ft_usleep(*ph->time_eat);
 	pthread_mutex_unlock(ph->left_fork);
@@ -55,7 +52,7 @@ static int	think(t_philos *ph)
 		return (1);	
 	time = get_current_time() - ph->start_time;
 	phwrite("%zu %d is thinking\n", time, ph);
-	if (time - ph->time_lmeal >= *ph->time_die)
+	if (time - ph->time_lmeal > *ph->time_die)
 	{
 		set_dead_flag(1, ph);
 		dead_write(ph);

@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:10:43 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/26 13:38:04 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:15:58 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_philos
 	size_t			*time_eat;
 	size_t			*time_sleep;
 	size_t			*max_meals;
+	size_t			*how_many_finished;
 	size_t			current_meals;
 	size_t			start_time;
 	size_t			time_lmeal;
@@ -48,6 +49,7 @@ typedef struct s_program
 	size_t			time_eat;
 	size_t			time_sleep;
 	size_t			max_meals;
+	size_t			how_many_finshed;
 
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	dead_lock;

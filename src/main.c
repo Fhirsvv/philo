@@ -6,13 +6,14 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:33:19 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/26 18:33:10 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:25:48 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
 // ./philo [nb philos] [time die] [time eat] [time sleep] [[max meals]]
+// ./philo 5 300 100 100 5 | grep "1 is eating" | wc -l
 int	main(int argc, char **argv)
 {
 	t_program	pr;

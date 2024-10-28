@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:43:42 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/26 18:32:09 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:16:44 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	philos_init(t_program *pr)
 		pr->philos[i].dead_lock = &pr->dead_lock;
 		pr->philos[i].meals_lock = &pr->meals_lock;
 		pr->philos[i].dead_flag = &pr->dead_flag;
+		pr->philos[i].how_many_finished = &pr->how_many_finshed;
 		pr->philos[i].current_meals = 0;
 		pr->philos[i].id = i + 1;
 		pr->philos[i].start_time = get_current_time();
@@ -61,6 +62,7 @@ static void	pr_init(t_program *pr, char **argv)
 	pr->time_eat = ft_atoi(argv[3]);
 	pr->time_sleep = ft_atoi(argv[4]);
 	pr->max_meals = -1;
+	pr->how_many_finshed = 0;
 	pr->dead_flag = 0;
 	if (argv[5])
 		pr->max_meals = ft_atoi(argv[5]);
