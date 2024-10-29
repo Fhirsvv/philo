@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:31:26 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/29 16:09:02 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:12:17 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 static void	*one_philo(void *philo)
 {
-	t_philos *ph;
+	t_philos 	*ph;
+	size_t		time;
 
 	ph = (t_philos *)philo;
-	phwrite("%zu %d has taken a fork\n", time, ph);
-	ft_usleep(ph->time_die);
+	time = get_current_time() - ph->start_time;
+	printf("%zu %d has taken a fork\n", time, ph->id);
+	ft_usleep(*ph->time_die);
 	dead_write(ph);
 	return (NULL);
 }
@@ -26,11 +28,11 @@ static void	*one_philo(void *philo)
 void	threads(t_program *pr)
 {
 	size_t		i;
-	pthread_t	one_philo;
+	pthread_t	philo;
 
 	i = 0;
 	if (pr->nb_philos == 1)
-		pthread_create(&one_philo, NULL, &one_philo, (void *)&pr->philos[0]);
+		pthread_create(&philo, NULL, &one_philo, (void *)&pr->philos[0]);
 	while (i < pr->nb_philos)
 	{
 		if (pthread_create(&pr->philos[i].thread, NULL, &routine,
