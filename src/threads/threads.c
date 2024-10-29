@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:31:26 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/29 16:12:17 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:17:05 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,25 @@ void	threads(t_program *pr)
 
 	i = 0;
 	if (pr->nb_philos == 1)
-		pthread_create(&philo, NULL, &one_philo, (void *)&pr->philos[0]);
-	while (i < pr->nb_philos)
 	{
-		if (pthread_create(&pr->philos[i].thread, NULL, &routine,
-				(void *)&pr->philos[i]) != 0)
-			return ;
-		i++;
+		pthread_create(&philo, NULL, &one_philo, (void *)&pr->philos[0]);	
+		pthread_join(philo, NULL);
 	}
-	i = 0;
-	while (i < pr->nb_philos)
+	else
 	{
-		pthread_join(pr->philos[i].thread, NULL);
-		i++;
+		while (i < pr->nb_philos)
+		{
+			if (pthread_create(&pr->philos[i].thread, NULL, &routine,
+					(void *)&pr->philos[i]) != 0)
+				return ;
+			i++;
+		}
+		i = 0;
+		while (i < pr->nb_philos)
+		{
+			pthread_join(pr->philos[i].thread, NULL);
+			i++;
+		}
 	}
 }
 
