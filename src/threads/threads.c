@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:31:26 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/28 09:37:36 by ecortes-         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:01:12 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 void	threads(t_program *pr)
 {
-	size_t	i;
+	size_t		i;
+	pthread_t	observer;
 
-	pr->dead_flag = 0;
 	i = 0;
+	/*if (pthread_create(&observer, NULL, &controler, (void *)pr) != 0)
+		return ;*/
+	if (pr->nb_philos == 1)
+		pthread_create()
 	while (i < pr->nb_philos)
 	{
 		if (pthread_create(&pr->philos[i].thread, NULL, &routine,
@@ -26,6 +30,7 @@ void	threads(t_program *pr)
 		i++;
 	}
 	i = 0;
+	pthread_join(observer, NULL);
 	while (i < pr->nb_philos)
 	{
 		pthread_join(pr->philos[i].thread, NULL);
