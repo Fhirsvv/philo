@@ -6,7 +6,7 @@
 #    By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 19:56:58 by ecortes-          #+#    #+#              #
-#    Updated: 2024/10/23 20:06:04 by ecortes-         ###   ########.fr        #
+#    Updated: 2024/10/30 16:11:06 by ecortes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,12 @@ NAME = philo
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=thread
 
 SRC_DIR = src/
 
 SRC = main.c utils/utils.c threads/routine.c threads/threads.c \
-      init/init.c free/free_program.c
+      init/init.c free/free_program.c threads/observer.c \
 	  
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
