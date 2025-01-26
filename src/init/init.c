@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:43:42 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/30 15:46:40 by ecortes-         ###   ########.fr       */
+/*   Updated: 2025/01/26 11:13:05 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	mutex_init(t_program *pr)
 	pthread_mutex_init(&pr->write_lock, NULL);
 }
 
-static void	pr_init(t_program *pr, char **argv)
+static void	program_init(t_program *pr, char **argv)
 {
 	pr->nb_philos = ft_atoi(argv[1]);
 	pr->time_die = ft_atoi(argv[2]);
@@ -71,7 +71,7 @@ static void	pr_init(t_program *pr, char **argv)
 
 void	init(t_program *pr, char **argv)
 {
-	pr_init(pr, argv);
+	program_init(pr, argv);
 	mutex_init(pr);
 	philos_init(pr);
 }

@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:42:02 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/30 17:07:32 by ecortes-         ###   ########.fr       */
+/*   Updated: 2025/01/26 11:34:09 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,16 @@ static int	eat(t_philos *ph)
 
 	if (is_dead_flag(ph))
 		return (1);
-	pthread_mutex_lock(ph->left_fork);
+	if (ph->id % 2 != 0)
+		pthread_mutex_lock(ph->left_fork);
+	else
+		pthread_mutex_lock(ph->right_fork);
 	time = get_current_time() - ph->start_time;
 	phwrite("%zu %d has taken a fork\n", time, ph);
-	pthread_mutex_lock(ph->right_fork);
+	if (ph->id % 2 != 0)
+		pthread_mutex_lock(ph->right_fork);
+	else
+		pthread_mutex_lock(ph->left_fork);
 	time = get_current_time() - ph->start_time;
 	phwrite("%zu %d has taken a fork\n", time, ph);
 	time = get_current_time() - ph->start_time;
@@ -75,6 +81,8 @@ void	*routine(void *philo)
 	t_philos	*ph;
 
 	ph = (t_philos *)philo;
+	if (ph->id % 2 != 0)
+	ft_usleep(*ph->time_eat);
 	while (true)
 	{
 		if (eat(ph) || phsleep(ph) || think(ph))
