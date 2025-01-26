@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:48:54 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/30 17:12:12 by ecortes-         ###   ########.fr       */
+/*   Updated: 2025/01/26 11:39:44 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ static void	check_max_meals(t_philos *ph, int *finished_meals)
 {
 	pthread_mutex_lock(ph->meals_lock);
 	if (ph->current_meals == *ph->max_meals)
-		++finished_meals;
+		set_dead_flag(1, ph);
 	pthread_mutex_unlock(ph->meals_lock);
+	(void)finished_meals;
 }
 
 inline static int check_time_die(t_philos *ph)

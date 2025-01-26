@@ -6,12 +6,11 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:42:02 by ecortes-          #+#    #+#             */
-/*   Updated: 2025/01/26 11:34:09 by ecortes-         ###   ########.fr       */
+/*   Updated: 2025/01/26 13:23:31 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
-//TODO: eee cosa para 1 philo, que pueda morir entre coger forks
 
 static void	phwrite(char *str, size_t time, t_philos *ph)
 {
