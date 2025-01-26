@@ -6,7 +6,7 @@
 /*   By: ecortes- <ecortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:31:26 by ecortes-          #+#    #+#             */
-/*   Updated: 2024/10/30 17:17:21 by ecortes-         ###   ########.fr       */
+/*   Updated: 2025/01/26 13:26:12 by ecortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	threads(t_program *pr)
 	pthread_join(obs, NULL);
 	while (++i < pr->nb_philos)
 		pthread_join(pr->philos[i].thread, NULL);
+	ft_usleep(1000);
 }
 
 void	set_dead_flag(int i, t_philos *ph)
